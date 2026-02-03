@@ -4,8 +4,9 @@ public class Pacient extends Persona{
 	
 	private String historialMedic;
 	
-	public Pacient(String nom, String dni) {
+	public Pacient(String nom, String dni, String his) {
 		super(nom, dni);
+		this.historialMedic = his;
 		// TODO Auto-generated constructor stub
 	}
 

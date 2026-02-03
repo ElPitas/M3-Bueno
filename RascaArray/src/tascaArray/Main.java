@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
+		int i;
+
 		// TODO Auto-generated method stub
 		/*
 		
@@ -30,21 +32,25 @@ public class Main {
 		
 		
 		ArrayList<Persona> array2 = new ArrayList<>();
-			Pacient p0 = new Pacient("Nyx", "89746513E");
-			Pacient p1 = new Pacient("Orfeo", "56468143A");
-			Doctor p2 = new Doctor("Izanami", "41321654W", "1000 verdades");
-			Doctor p3 = new Doctor("Arsene", "84981325C", "LeBlank");
+			array2.add(new Pacient("Nyx", "89746513E", "The moment man devoured the fruit of knowledge"));
+			array2.add(new Pacient("Orfeo", "56468143A","he sealed his fate... "));
+			array2.add(new Doctor("Izanami", "41321654W", "Entrusting his future to the cards,"));
+			array2.add(new Doctor("Arsene", "84981325C", "man clings to a dim hope."));
 		
+			i = 0;
+			
 			for (Persona p : array2) {
 				if(p instanceof Doctor) {
-					Doctor pac = (Doctor)p;
-					System.out.println("ii");
+					Doctor Doc = (Doctor)p;
+					System.out.println("Element del vector: " + i +  " Doctor" + ", Nombre:" + p.getNom() + ", DNI: " + p.getDni() + ", Especialitat: " + Doc.getEspecialitat());
+					i++;
 				}else {
-					System.out.println("ii");
+					Pacient Pac = (Pacient)p;
+					System.out.println("Element del vector: " + i +  " Pacient" +  ", Nombre: " + p.getNom() + ", DNI: " + p.getDni() + ", Historial Medic: " + Pac.getHistorialMedic());
+					i++;
 				}
 			}	
-			 System.out.println("A");
-		
+ 		
 			
 		}
 
