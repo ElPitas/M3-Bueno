@@ -26,22 +26,38 @@ public class MyArrayList {
 	}
 	
 	public void add(String palabra) {
-		this.l[size] = palabra;
-		this.size++;
+		
+			if (size == l.length) {
+	            redimensionar();
+			}
+			this.l[size] = palabra;
+			this.size++;
+		
 	}
 	
+	private void redimensionar() {
+		//nl = new l me lo apunto pa que no se me olvide
+        String[] nl = new String[l.length * 2];
+        for (int i = 0; i < l.length; i++) {
+            nl[i] = l[i];
+        }
+        l = nl;
+    }
+	
 	public void add(int pos, String palabra) {
-		int i=pos;
-		if(this.size+1 <= this.length) {
-			String now;
-			String next;
-			while(l[i]!=null && i<l.length-1) {
-				
-				
-			}
+		int i;
+		if(pos < length && this.size+1 <= this.length) {
+			 if (size == l.length) {
+		            redimensionar();
+		      }
+		        for (i = size; i > pos; i--) {
+		            l[i] = l[i - 1];
+		        }
+
+		        l[pos] = palabra;
+		        size++;
 		}
-		this.l[pos] = palabra;
-		this.size++;
+		
 	}
 	
 	public void set(int pos, String palabra) {
@@ -67,9 +83,10 @@ public class MyArrayList {
 	}
 
 	public String remove() {
-		if(size>0) {
-			String borron = this.l[size];
-			this.l[size]=null;
+		if(this.size>0) {
+			String borron = this.l[size-1];
+			this.l[size-1]=null;
+			size--;
 			return borron;
 		}
 		return null;		
@@ -80,8 +97,15 @@ public class MyArrayList {
 			int i=0;
 			for(String palabra : this.l) {
 				if(palabra !=null && palabra.equals(del)) {
-					this.l[i] = null;
-					return i;
+					int posicion = i;
+			
+					for (i = posicion; i < size - 1; i++) {
+				        l[i] = l[i + 1];
+					}
+					
+				    l[size - 1] = null;
+				    size--;
+					return posicion;
 				}
 				i++;
 			}
@@ -91,8 +115,12 @@ public class MyArrayList {
 	}
 	
 	public String remove(int n) {
+		int i;
 		if(size>0) {
 			String borron = this.l[n];
+			for (i = n; i < size - 1; i++) {
+		        l[i] = l[i + 1];
+			}
 			this.l[n]=null;
 			return borron;
 		}
@@ -103,9 +131,9 @@ public class MyArrayList {
 		String res="";
 
         for(int i = 0; i<this.l.length; i++){
-        	if(l[i]!=null) {
+        	
         		res+=l[i]+" ";	
-        	}
+        	
         }
         
         return res;
